@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour, PlayerControls.IPlayerActions
 
     public Transform MainCamera;            //To hold the FFCamera
 
+    public Gun gun;                         //Get Gun script
+
+    Vector3 movement;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,8 +43,13 @@ public class PlayerController : MonoBehaviour, PlayerControls.IPlayerActions
         controls.Player.Enable();
     }
 
+    public void OnDisable()
+    {
+        controls.Player.Disable();
+    }
+
     //Inputsystem.inputActioins.Player.Move.triggered
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnMovement(InputAction.CallbackContext context)
     {
         motion = context.ReadValue<Vector2>();                      //Get the values of the directions Player is moving (arrows and WASD)
     }
@@ -51,11 +60,23 @@ public class PlayerController : MonoBehaviour, PlayerControls.IPlayerActions
         mouseInput = context.ReadValue<Vector2>();                  //read values of the mouse motion
     }
 
+    //Inputsytem.inputActions.Player.Gun.triggered
+    public void OnGun(InputAction.CallbackContext context)
+    {
+        gun.Shoot();
+    }
+
+    //Inputsystem.inputActions.Player.Quit.triggered
+    public void OnQuit(InputAction.CallbackContext context)
+    {
+        Application.Quit();                                         // Quit the game
+    }
+
     // FixedUpdate is called every physisc step
     void FixedUpdate()
     {
         //moves player
-        Vector3 movement = transform.right * motion.x + transform.forward * motion.y; // GLOBAL[new Vector3(motion.x, 0.0f, motion.y);] <- that but relative to the direction of the camera
+        movement = transform.right * motion.x + transform.forward * motion.y; // GLOBAL[new Vector3(motion.x, 0.0f, motion.y);] <- that but relative to the direction of the camera
         rb.AddForce(movement * speed);                                                //Move the player by adding force
     }
 

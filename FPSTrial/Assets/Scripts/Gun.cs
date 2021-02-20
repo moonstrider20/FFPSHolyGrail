@@ -9,23 +9,17 @@ public class Gun : MonoBehaviour
 
     public Camera fpsCam;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             Shoot();
         }
         
-    }
-
-    void Shoot()
+    }*/
+   
+    public void Shoot()
     {
         RaycastHit hit;
 
