@@ -1,40 +1,4 @@
-﻿/*using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Gun : MonoBehaviour
-{
-    public float damage = 10f;
-    public float range = 50f;
-
-    public Camera fpsCam;
-
-    // Update is called once per frame
-    /*void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Shoot();
-        }
-        
-    }
-   
-    public void Shoot()
-    {
-        RaycastHit hit;
-
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
-        {
-            Target target = hit.transform.GetComponent<Target>();
-
-            if (target != null)
-            {
-                target.TakeDamage(damage);
-            }
-        }
-    }
-}*/
-
+﻿//Amorina Tabera
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,119 +7,107 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     //Gun Stats
-    public int damage;
-    public float timeBetweenShooting;
-    //public float spread;
-    public float range;
-    public float reloadTime;
-    public float timeBetweenShots;
-    public int magazineSize;
-    public int bulletsPerTap;
-    //public bool allowButtonHold;
-    public int bulletsLeft;
-    public int bulletsShot;
+    public int damage;                      //Damage done by gun
+    public float timeBetweenShooting;       //Time interval between shot        
+    public float reloadTime;                //Time to reload (not used in this code)
+    public int magazineSize;                //Magazine Size, in this case 1
+    public int bulletsPerTap;               //How many bullets are shot, in this case 1
+    public int bulletsLeft;                 //Bullets left in magazine
+    //public int bulletsShot;                 //Bullets shot so far (for debuging)
+
+    //bullet 
+    public GameObject bullet;               //Get Bullet prefab
+    //bullet force
+    public float shootForce;                //Force gun shoots bullet forward
+    public float upwardForce;               //Force gun shoots bullet upward (parabolic)
 
     //bools
-    bool readyToShoot;
-    bool reloading;
+    bool readyToShoot;                      //Ready to shoot again, or not, according to timeBetweenShooting
+    bool reloading;                         //Checking if in the middle of reloading, not used in this code
 
     //Reference
-    public Camera fpsCam;
-    public Transform attackPoint;
-    public RaycastHit rayHit;
-    public LayerMask whatIsEnemy;
+    public Camera fpsCam;                   //First person camera, gun is a child of this
+    public Transform attackPoint;           //Attack point is where the bullets will be instantiated 
+    public RaycastHit rayHit;               //Raycast for where Player wants to shoot bullet
+    public LayerMask whatIsEnemy;           //Get enemy layer
 
-    //Graphics
-    //public GameObject muzzleFlash;
-    //public GameObject bulletHoleGraphic;
-    //public CamShake cameShake;
-    //public float camShakeMagnitude;
-    //public float camShakeDuration;
-    //public TextMeshProUGUI text;
-
+    //Called before Start(), slightly better
     private void Awake()
     {
-        bulletsLeft = magazineSize;
-        readyToShoot = true;
+        bulletsLeft = magazineSize;         //Sets magazine
+        readyToShoot = true;                //Player starts ready to shoot
     }
 
-    /*private void Update()
-    {
-        MyInput();
-
-        //SetText
-        //text.SetText(bulletsLeft + " / " + magazineSize);
-    }*/
-
+    //Method MyInput for checking when Player wants to shoot or reload
     public void MyInput()
     {
-        if (bulletsLeft < magazineSize && !reloading)
+        //Reload
+        if (bulletsLeft < magazineSize && !reloading)           //Checks if magazine is empty and player clicks the reload button (which is not present for this project)
         {
-            Reload();
+            Reload();                                           //Calls method Reload(), which is 0 seconds for this project
         }
 
         //Shoot
-        if (readyToShoot && !reloading && bulletsLeft > 0)
+        if (readyToShoot && !reloading && bulletsLeft > 0)      //Checks if ready to shoot and have bullets left and not in the middle of reloading
         {
-            bulletsShot = bulletsPerTap;
-            Shoot();
+            //bulletsShot += bulletsPerTap;                       //Increment bullets shot (for debuging)
+            Shoot();                                            //Calls method Shoot()
         }
     }
 
+    //Method to shoot gun
     private void Shoot()
     {
-        readyToShoot = false;
-        //Spread 
-        //float x = Random.Range(-spread, spread);
-        //float y = Random.Range(-spread, spread);
+        readyToShoot = false;                                               //Set to false so time interval for shots starts
 
-        //Calculate Direction with Spread
-        //Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
+        //Find the exact hit position Player wants to shoot using a raycast
+        Ray ray = fpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));    //Ray set to middle of screen
+        RaycastHit hit;                                                     //Raycast to hold the hit point
 
-        //RayCast
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out rayHit, range))
+        //check if ray hits something
+        Vector3 targetPoint;                                                //Make a vector3 for the target point
+        if (Physics.Raycast(ray, out hit))                                  //returns true if something is hit
         {
-            /*Target target = rayHit.transform.GetComponent<Target>();
-
-            if (target != null)
-            {
-                target.TakeDamage(damage);
-            }*/
-            Enemy target = rayHit.transform.GetComponent<Enemy>();
-
-            if (target != null)
-            {
-                target.TakeDamage(damage);
-            }
+            targetPoint = hit.point;                                        //targetpoint becomes a vector3 to the raycast hit point
+        }
+        else                                                                //Player did not hit something (open sky for example)
+        {
+            targetPoint = ray.GetPoint(100);                                //Just a point far away from the player
         }
 
-        //ShakeCamera
-        //cameShake.Shake(camShakeDuration, camShakeMagnitude);
+        Vector3 directionOfBullet = targetPoint - attackPoint.position;     //Calculate direction from attackPoint to targetPoint
 
-        //Graphics
-        //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
-        //Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+        //Instantiate bullet/projectile
+        GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity); //store instantiated bullet in currentBullet
+        currentBullet.transform.forward = directionOfBullet.normalized;                            //Rotate bullet to shoot direction
 
-        bulletsLeft--;
-        bulletsShot--;
+        //Add forces to bullet and make go to direct attacking point
+        currentBullet.GetComponent<Rigidbody>().AddForce(directionOfBullet.normalized * shootForce, ForceMode.Impulse);
+        currentBullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * upwardForce, ForceMode.Impulse);
 
-        Invoke("ResetShot", timeBetweenShooting);
+        bulletsLeft--;          //Decrement bullets left in magazine
+        //bulletsShot--;          //Increment bullets shot, for debuging
+
+        Invoke("ResetShot", timeBetweenShooting);   //Invoke take a (method, time interval)
     }
 
+    //Method to reset the shot
     private void ResetShot()
     {
-        readyToShoot = true;
+        readyToShoot = true;    //Player can now shoot again
     }
 
+    //Method to reolad
     private void Reload()
     {
-        reloading = true;
-        Invoke("ReloadFinished", reloadTime);
+        reloading = true;                       //Player started reloading
+        Invoke("ReloadFinished", reloadTime);   //Begin to finish reloading
     }
 
+    //Method to finish reloading
     private void ReloadFinished()
     {
-        bulletsLeft = magazineSize;
-        reloading = false;
+        bulletsLeft = magazineSize;             //Magazine set
+        reloading = false;                      //Player finished reloading
     }
 }

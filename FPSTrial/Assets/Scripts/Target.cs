@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//For debuging and making gun
 public class Target : MonoBehaviour
 {
     public float health = 50f;
