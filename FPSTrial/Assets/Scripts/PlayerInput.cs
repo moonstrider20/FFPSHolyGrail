@@ -1,4 +1,4 @@
-﻿//Amorina Tabera
+//Amorina Tabera
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +11,12 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     //KAVAN**************************************************************************************************************************************************
     //YOUR CALLS ARE IN THE METHOD OnPause
     public static bool GameIsPaused = false;
-
     public GameObject pauseMenuUI;
 
+    public AudioSource hurtSFX;
+    public AudioSource duckStep;
+    public AudioClip oof;
+    public AudioClip dieNoise;
     //*********************************************************************************************************************************************************
     
     public float speed;                     //Speed of Player
@@ -46,6 +49,10 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
         Cursor.lockState = CursorLockMode.Locked;           //Keep cursor in the center, not wandering
         Cursor.visible = false;                             //Make cursor invisible 
         maxHealth = health;                                 //Set max health to health
+        hurtSFX = gameObject.AddComponent<AudioSource>();
+        duckStep = gameObject.AddComponent<AudioSource>();
+        hurtSFX.clip = oof;
+    
     }
 
     //To enable the Input System contorls for "Player"
@@ -114,12 +121,15 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     //Method to look around (should be in OnLook, but left here since the movement didn't work)
     private void Turn()
     {
+        if(!GameIsPaused)
+        {
         rotX += mouseInput.x * sensitivity * Time.deltaTime;                            //Get horizontal input
         rotY += mouseInput.y * sensitivity * Time.deltaTime;                            //Get vertical input
         rotY = Mathf.Clamp(rotY, MinLookUpAngle, MaxLookUpAngle);                       //Restrict how far up and down Player can look
 
         ffCamera.transform.localRotation = Quaternion.Euler(-rotY, mouseInput.x, 0f);   //Move camera with mouse
         transform.Rotate(Vector3.up * mouseInput.x);                                    //Move Player with camera
+        }
     }
 
 
@@ -127,15 +137,14 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     public void TakeDamage(int damage)
     {
         health -= damage;                   //decrement health according to damage taken
-
+        hurtSFX.Play();
         if (health <= 0)                    //If player dies
         {
+            hurtSFX.clip = dieNoise;                
             Debug.Log("YOU DIED!");         //Put actual death here
         }
     }
 
-    //KAVAN*****************************************************************************************************************************************************************
-    //YOUR METHODS FOR PAUSE MENU ARE HERE
     void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -148,5 +157,4 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
-    //************************************************************************************************************************************************************************
 }

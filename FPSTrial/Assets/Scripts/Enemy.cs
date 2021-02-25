@@ -35,6 +35,12 @@ public class Enemy : MonoBehaviour
     public bool playerInAttackRangeMelee;   //Check if Player is in melee range
     public bool playerInAttackRangeRange;   //Check if Player is in range attack range
 
+    public AudioSource Shotgunfire;
+    public AudioClip Shotgun;
+    public AudioSource paHurts;
+    public AudioClip hurtSound;
+    public AudioClip paDeath;
+
     //Sort of Like start
     private void Awake()
     {
@@ -42,6 +48,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();           //Get the NavMesh agent
         stage = 1;                                      //Start at stage 1 for fight
         startHealth = health;                           //Set startHealth with the starting health
+        paHurts.clip = hurtSound;
     }
 
     private void Update()
@@ -150,6 +157,7 @@ public class Enemy : MonoBehaviour
 
                 else
                 {
+                    Shotgunfire.Play();
                     //Calculate direction from attackPoint to targetPoint
                     Vector3 directionOfBullet = player.position - attackPoint.position; //added to enemy script
 
@@ -159,6 +167,7 @@ public class Enemy : MonoBehaviour
 
                     rb.AddForce(directionOfBullet * 32f, ForceMode.Impulse);
                     rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+                   
 
                     /*//Calculate direction from attackPoint to targetPoint
                     Vector3 directionOfBullet = targetPoint - attackPoint.position;
@@ -225,7 +234,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;   //decrement health by damage taken
-
+        paHurts.Play();
         //For stage 2
         if (health <= ((startHealth / 3) * 2))
         {
@@ -240,6 +249,10 @@ public class Enemy : MonoBehaviour
         }
 
         //For dying
+        if (health <= 0) 
+        {
+            paHurts.clip = paDeath;
+        }
         if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
     }
 

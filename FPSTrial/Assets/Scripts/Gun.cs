@@ -30,12 +30,16 @@ public class Gun : MonoBehaviour
     public Transform attackPoint;           //Attack point is where the bullets will be instantiated 
     public RaycastHit rayHit;               //Raycast for where Player wants to shoot bullet
     public LayerMask whatIsEnemy;           //Get enemy layer
+    public AudioSource Shotgunfire;
+    public AudioClip Shotgun;
+
 
     //Called before Start(), slightly better
     private void Awake()
     {
         bulletsLeft = magazineSize;         //Sets magazine
         readyToShoot = true;                //Player starts ready to shoot
+
     }
 
     //Method MyInput for checking when Player wants to shoot or reload
@@ -87,8 +91,11 @@ public class Gun : MonoBehaviour
 
         bulletsLeft--;          //Decrement bullets left in magazine
         //bulletsShot--;          //Increment bullets shot, for debuging
+        Shotgunfire.Play();
 
         Invoke("ResetShot", timeBetweenShooting);   //Invoke take a (method, time interval)
+
+        
     }
 
     //Method to reset the shot
