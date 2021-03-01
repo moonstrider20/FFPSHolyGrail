@@ -13,6 +13,7 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     //YOUR CALLS ARE IN THE METHOD OnPause
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject hudUI;
 
     public AudioSource hurtSFX;
     public AudioSource duckStep;
@@ -171,12 +172,14 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     void Resume()
     {
         pauseMenuUI.SetActive(false);
+        hudUI.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
     void Pause()
     {
         pauseMenuUI.SetActive(true);
+        hudUI.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }

@@ -16243,8 +16243,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 673.1614, y: -327.7937}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 679.8, y: -320.16}
+  m_SizeDelta: {x: 137.82925, y: 45.27246}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1120788666
 MonoBehaviour:
@@ -16694,8 +16694,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 673.1614, y: -327.7937}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 661.85, y: -319.18}
+  m_SizeDelta: {x: 137.37122, y: 47.21827}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1126965910
 MonoBehaviour:
@@ -16718,8 +16718,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.23529412}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.47058824}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -19581,8 +19581,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 673.1614, y: -384.33618}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 633.62, y: -375.42}
+  m_SizeDelta: {x: 80.915054, y: 47.826225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1334775607
 MonoBehaviour:
@@ -19605,8 +19605,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.23529412}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.47058824}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -22543,8 +22543,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 673.1614, y: -384.33618}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 684, y: -377.24}
+  m_SizeDelta: {x: 85.44258, y: 45.024475}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1551513310
 MonoBehaviour:
@@ -26427,6 +26427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1975831749}
+  hudUI: {fileID: 664285993}
   hurtSFX: {fileID: 1765306316}
   duckStep: {fileID: 1765306316}
   oof: {fileID: 8300000, guid: 6a98aa8e56118214b8d4e3e28780b82e, type: 3}
