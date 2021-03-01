@@ -314,7 +314,7 @@ public class Enemy : MonoBehaviour
         //gameObject.SetActive(false);
         paGun.SetActive(false);
         paBody.SetActive(false);
-        Invoke(nameof(BackAgain), 10f);
+        Invoke(nameof(BackAgain), 3f);
     }
 
     private void BackAgain()

@@ -2061,7 +2061,7 @@ MonoBehaviour:
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: b2eb0d024b34aa7448a8d4ab10035fde, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 5daec8cb0e5964d4794e73cf6205be12, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2358,7 +2358,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 490.70636, y: -236.13383}
+  m_AnchoredPosition: {x: 490.70636, y: -332.37823}
   m_SizeDelta: {x: 321.7904, y: 88.346436}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1770280831
@@ -2421,7 +2421,7 @@ MonoBehaviour:
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: b2eb0d024b34aa7448a8d4ab10035fde, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 5daec8cb0e5964d4794e73cf6205be12, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2928,7 +2928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 623308157827516943, guid: 99f9b4dab4cadb645b6bbefc34f745d7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 256.3569
+      value: 341.54727
       objectReference: {fileID: 0}
     - target: {fileID: 623308157827516943, guid: 99f9b4dab4cadb645b6bbefc34f745d7, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3029,7 +3029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5264531255655569340, guid: 496fe7e9ff765b54cabc0aea35bdc385, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 89.814125
+      value: 121.490005
       objectReference: {fileID: 0}
     - target: {fileID: 5264531255655569340, guid: 496fe7e9ff765b54cabc0aea35bdc385, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3126,7 +3126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5627585451537149160, guid: f908da8112738f94590f306714837361, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -246.84015
+      value: -327.79367
       objectReference: {fileID: 0}
     - target: {fileID: 5627585451537149160, guid: f908da8112738f94590f306714837361, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3227,7 +3227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7683962423038975464, guid: b500480a8da6d3f4a8b73630fa77d11c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -60
+      value: -86.341934
       objectReference: {fileID: 0}
     - target: {fileID: 7683962423038975464, guid: b500480a8da6d3f4a8b73630fa77d11c, type: 3}
       propertyPath: m_SizeDelta.x

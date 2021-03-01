@@ -13,9 +13,9 @@ public class FallTree : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             //treeStart = new Vector3(-137f, 39.2f, 30.21f);
-            treeStart.transform.position = new Vector3(-137f, 32f, 37f);
+            treeStart.transform.position = new Vector3(-137f, 31f, 37f);
             Debug.Log("Player Entered arena");
-            treeFinish.transform.position = new Vector3(-137f, 32f, 48f);
+            treeFinish.transform.position = new Vector3(-137f, 31f, 48f);
         }
 
     }

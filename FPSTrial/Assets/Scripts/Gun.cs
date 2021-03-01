@@ -30,17 +30,26 @@ public class Gun : MonoBehaviour
     public Transform attackPoint;           //Attack point is where the bullets will be instantiated 
     public RaycastHit rayHit;               //Raycast for where Player wants to shoot bullet
     public LayerMask whatIsEnemy;           //Get enemy layer
-    
-    /*//Sounds
+
+    //Sounds
     public AudioSource Shotgunfire;
     public AudioClip Shotgun;
-*/
+
+
+
+    //EPIC ANIMATION STUFF -Gary
+    public Animator anim;
+
 
     //Called before Start(), slightly better
     private void Awake()
     {
         bulletsLeft = magazineSize;         //Sets magazine
         readyToShoot = true;                //Player starts ready to shoot
+
+
+
+      //  anim = gameObject.GetComponent<Animator>();
 
     }
 
@@ -92,10 +101,12 @@ public class Gun : MonoBehaviour
         currentBullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * upwardForce, ForceMode.Impulse);
 
         bulletsLeft--;          //Decrement bullets left in magazine
-        //bulletsShot--;          //Increment bullets shot, for debuging
-        
+                                //bulletsShot--;          //Increment bullets shot, for debuging
+
         //Shots fired!
-        //Shotgunfire.Play();
+        Shotgunfire.Play();
+
+        anim.Play("Shotgun");
 
         Invoke("ResetShot", timeBetweenShooting);   //Invoke take a (method, time interval)
 

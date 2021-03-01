@@ -134,7 +134,7 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
         Turn();         //Calls method Turn()
 
         //***GARY*** health stuff
-        healthText.text = "+" + health;
+        healthText.text = " " + health;
     }
 
     //Method to move (should be in OnMovement but didn't work for some reason
