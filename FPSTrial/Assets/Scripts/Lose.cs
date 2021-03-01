@@ -13,13 +13,13 @@ public class Lose : MonoBehaviour
     public AudioSource sound;
 
     // Update is called once per frame
-    void OnTriggerEnter()
+    void Start()
     {
         //Amorina**************************************************************************
         Cursor.lockState = CursorLockMode.None;           //Unlock cursor
         Cursor.visible = true;                             //Make cursor visible 
         //*********************************************************************************
-
+        Debug.Log("We got inot the lose screen -_-");
         loseScreen.SetActive(true);
         gameScreen.SetActive(false);
         Time.timeScale = 0f;

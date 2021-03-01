@@ -274,15 +274,19 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;              //Get the NavMesh agent from Enemy
 
     public Transform player;                //Position of Player
+    public PlayerInput actualPlayer;        //To get script of player for FIXES!
 
     public LayerMask Ground;                //Get ground layer
     public LayerMask Player;                //Get Player layer
 
     public float health;                    //Health of Enemy
     public float startHealth;               //Start health to calculate stages
+    public bool died = false;
 
     public int stage;                       //Stages in fight according to health
     public float newSpeed;                  //Speed increase when in Stage 3 of the fight
+
+    public GameObject finishTree;           //The tree blocking the finish point
 
     //Patroling
     public Vector3 walkPoint;               //To hold new walking point
@@ -315,6 +319,8 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (died)
+            return;
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);               //Chekcs if Player is in sight range
         playerInAttackRangeMelee = Physics.CheckSphere(transform.position, attackRangeMelee, Player);   //Checks if Player is in melee range
@@ -336,7 +342,7 @@ public class Enemy : MonoBehaviour
         if (playerInSightRange && !playerInAttackRangeMelee && playerInAttackRangeRange)// && !alreadyAttacked)
         {
             AttackPlayer(); //Attack Player
-            ChasePlayer();
+            //ChasePlayer();
         }
 
         /*//If in sight, in range attack range, but NOT able to attack
@@ -425,11 +431,17 @@ public class Enemy : MonoBehaviour
 
                     Rigidbody rb = Instantiate(bullet, attackPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
 
-                    //rb.transform.forward = directionOfBullet.normalized; //added to enemy script
-                    rb.transform.LookAt(player);
+                    rb.transform.forward = directionOfBullet.normalized; //added to enemy script
+                    //rb.transform.LookAt(player);
 
-                    rb.AddForce(directionOfBullet * 32f, ForceMode.Impulse);
-                    rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+                    rb.AddForce(directionOfBullet * 15f, ForceMode.Impulse);
+                    rb.AddForce(transform.up * 1f, ForceMode.Impulse);
+
+                    Debug.Log(player.position);
+
+                    //ONLY BECAUSE THERE IS A BUG WE CAN'T SEEM TO FIND, PRETTY SURE SOMETHING WRONG IN THE ENGINE, HAPPENED TWICE BEFORE, TO MANY OF 
+                    //OTHER PEOPLE CHANGES TO GO BACK NOW T-T
+                    actualPlayer.TakeDamage(10);
 
                     /*//Calculate direction from attackPoint to targetPoint
                     Vector3 directionOfBullet = targetPoint - attackPoint.position;
@@ -463,11 +475,17 @@ public class Enemy : MonoBehaviour
 
                     Rigidbody rb = Instantiate(bullet, attackPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
 
-                    //rb.transform.forward = directionOfBullet.normalized; //added to enemy script
-                    rb.transform.LookAt(player);
+                    rb.transform.forward = directionOfBullet.normalized; //added to enemy script
+                    //rb.transform.LookAt(player);
 
-                    rb.AddForce(directionOfBullet * 32f, ForceMode.Impulse);
-                    rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+                    rb.AddForce(directionOfBullet * 15f, ForceMode.Impulse);
+                    rb.AddForce(transform.up * 1f, ForceMode.Impulse);
+
+                    Debug.Log(player.position);
+
+                    //ONLY BECAUSE THERE IS A BUG WE CAN'T SEEM TO FIND, PRETTY SURE SOMETHING WRONG IN THE ENGINE, HAPPENED TWICE BEFORE, TO MANY OF 
+                    //OTHER PEOPLE CHANGES TO GO BACK NOW T-T
+                    actualPlayer.TakeDamage(10);
                 }
                 //Debug.Log("HIT STAGE 2");
             }
@@ -483,15 +501,21 @@ public class Enemy : MonoBehaviour
                 {
                     Debug.Log("sTaGE 3 --- Throwing Axe");
                     //Calculate direction from attackPoint to targetPoint
-                    Vector3 directionOfAxe = player.position - attackPoint.position; //added to enemy script
+                    Vector3 directionOfBullet = player.position - attackPoint.position; //added to enemy script
 
                     Rigidbody rb = Instantiate(bullet, attackPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
 
-                    //rb.transform.forward = directionOfBullet.normalized; //added to enemy script
-                    rb.transform.LookAt(player);
+                    rb.transform.forward = directionOfBullet.normalized; //added to enemy script
+                    //rb.transform.LookAt(player);
 
-                    rb.AddForce(directionOfAxe * 32f, ForceMode.Impulse);
-                    rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+                    rb.AddForce(directionOfBullet * 15f, ForceMode.Impulse);
+                    rb.AddForce(transform.up * 1f, ForceMode.Impulse);
+
+                    Debug.Log(player.position);
+
+                    //ONLY BECAUSE THERE IS A BUG WE CAN'T SEEM TO FIND, PRETTY SURE SOMETHING WRONG IN THE ENGINE, HAPPENED TWICE BEFORE, TO MANY OF 
+                    //OTHER PEOPLE CHANGES TO GO BACK NOW T-T
+                    actualPlayer.TakeDamage(10);
 
                 }
                 //Debug.Log("sTaGE 3!!");
@@ -539,6 +563,17 @@ public class Enemy : MonoBehaviour
     private void DestroyEnemy()
     {
         //Destroy(gameObject);
+        Destroy(finishTree);
+        transform.Translate(new Vector3(0f, -10f, 0f));
+        died = true;
+        agent.isStopped = true;
         Debug.Log("Pa DIED!");
+        Destroy(gameObject);
+    }
+
+    public void PlayerDied()
+    {
+        died = true;
+        agent.isStopped = true;
     }
 }

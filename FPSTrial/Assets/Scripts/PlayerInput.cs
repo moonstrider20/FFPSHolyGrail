@@ -43,8 +43,12 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     public float health;                    //To hold current health
     public float maxHealth;                 //To hold max health
 
+    public Enemy enemy;                     //To hold enemy script so we can acess it
+
     //***********************GARY****************** health text stuff
     public TextMeshProUGUI healthText;
+
+    public GameObject loseScreen;
 
     
 
@@ -154,6 +158,10 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
         {
             hurtSFX.clip = dieNoise;                
             Debug.Log("YOU DIED!");         //Put actual death here
+            loseScreen.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;           //Unlock cursor
+            Cursor.visible = true;
+            enemy.PlayerDied();
         }
     }
 

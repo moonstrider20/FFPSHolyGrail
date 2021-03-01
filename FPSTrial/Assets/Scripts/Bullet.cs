@@ -42,6 +42,7 @@ public class Bullet : MonoBehaviour
             target.TakeDamage(explosionDamage);
         }
 
+
         //Explode if bullet hits the player
         if (collision.collider.CompareTag("Player"))
         {
