@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     public float health;                    //Health of Enemy
     public float startHealth;               //Start health to calculate stages
     public bool died = false;               //Check if Pa is dead
+    public GameObject paGun;
+    public GameObject paBody;
 
     public int stage;                       //Stages in fight according to health
     public float newSpeed;                  //Speed increase when in Stage 3 of the fight
@@ -305,14 +307,29 @@ public class Enemy : MonoBehaviour
         Destroy(finishTree);
         transform.Translate(new Vector3(0f, -10f, 0f));
         died = true;
-        agent.isStopped = true;
+        //agent.isStopped = true;
         Debug.Log("Pa DIED!");
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        //this.SetActive(false);
+        //gameObject.SetActive(false);
+        paGun.SetActive(false);
+        paBody.SetActive(false);
+        Invoke(nameof(BackAgain), 3f);
+    }
+
+    private void BackAgain()
+    {
+        //this.SetActive(true);
+        //gameObject.SetActive(true);
+        paGun.SetActive(true);
+        paBody.SetActive(true);
+        health = startHealth;
+        died = false;
     }
 
     public void PlayerDied()
     {
         died = true;
-        agent.isStopped = true;
+        //agent.isStopped = true;
     }
 }
