@@ -19,6 +19,7 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     public AudioSource duckStep;
     public AudioClip oof;
     public AudioClip dieNoise;
+    public AudioClip steps;
     //*********************************************************************************************************************************************************
     
     public float speed;                     //Speed of Player
@@ -64,6 +65,7 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
         hurtSFX = gameObject.AddComponent<AudioSource>();
         duckStep = gameObject.AddComponent<AudioSource>();
         hurtSFX.clip = oof;
+        duckStep.clip = steps;
 
         
     
@@ -133,6 +135,7 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     {
         movement = transform.right * motion.x + transform.forward * motion.y; // GLOBAL[new Vector3(motion.x, 0.0f, motion.y);] <- that but relative to the direction of the camera
         controller.Move(movement * Time.deltaTime * speed);                   //Move the Player
+        duckStep.Play();
     }
 
     //Method to look around (should be in OnLook, but left here since the movement didn't work)

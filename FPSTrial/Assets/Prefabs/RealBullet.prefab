@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2999216143903031463
+--- !u!1 &6487136712236952011
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5819779068967624606}
-  - component: {fileID: 6810599180208298129}
-  - component: {fileID: 4270756074562802588}
-  - component: {fileID: 4939593354023049388}
-  - component: {fileID: 2055051460936832725}
-  - component: {fileID: 5172855543119078680}
-  m_Layer: 11
-  m_Name: Bullet
-  m_TagString: Bullet
+  - component: {fileID: 8141796564492399760}
+  - component: {fileID: 8212334102106616991}
+  - component: {fileID: 9170695660560274513}
+  - component: {fileID: 6319377198297347761}
+  - component: {fileID: -8924712831532173430}
+  - component: {fileID: -4085606755427372625}
+  m_Layer: 0
+  m_Name: RealBullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5819779068967624606
+--- !u!4 &8141796564492399760
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2999216143903031463}
+  m_GameObject: {fileID: 6487136712236952011}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.36240274, y: 3.4199924, z: -65.23868}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalPosition: {x: -136.85818, y: 39.206, z: 40.127304}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6810599180208298129
+--- !u!33 &8212334102106616991
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2999216143903031463}
+  m_GameObject: {fileID: 6487136712236952011}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4270756074562802588
+--- !u!23 &9170695660560274513
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2999216143903031463}
+  m_GameObject: {fileID: 6487136712236952011}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,48 +84,48 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4939593354023049388
+--- !u!135 &6319377198297347761
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2999216143903031463}
+  m_GameObject: {fileID: 6487136712236952011}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2055051460936832725
+--- !u!54 &-8924712831532173430
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2999216143903031463}
+  m_GameObject: {fileID: 6487136712236952011}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5172855543119078680
+--- !u!114 &-4085606755427372625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2999216143903031463}
+  m_GameObject: {fileID: 6487136712236952011}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b031779b783b4bd42ab06b597ce8fe34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 2055051460936832725}
+  rb: {fileID: -8924712831532173430}
   target: {fileID: 0}
   targetPlayer: {fileID: 0}
   explosionDamage: 10
