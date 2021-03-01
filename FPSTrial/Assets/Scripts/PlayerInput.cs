@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
 {
@@ -42,6 +43,12 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     public float health;                    //To hold current health
     public float maxHealth;                 //To hold max health
 
+    //***********************GARY****************** health text stuff
+    public TextMeshProUGUI healthText;
+
+    
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +59,8 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
         hurtSFX = gameObject.AddComponent<AudioSource>();
         duckStep = gameObject.AddComponent<AudioSource>();
         hurtSFX.clip = oof;
+
+        
     
     }
 
@@ -109,6 +118,9 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     {
         Move();         //Calls method Move()
         Turn();         //Calls method Turn()
+
+        //***GARY*** health stuff
+        healthText.text = "+" + health;
     }
 
     //Method to move (should be in OnMovement but didn't work for some reason
@@ -144,6 +156,9 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
             Debug.Log("YOU DIED!");         //Put actual death here
         }
     }
+
+
+   
 
     void Resume()
     {
