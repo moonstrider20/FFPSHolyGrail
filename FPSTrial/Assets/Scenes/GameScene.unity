@@ -26997,11 +26997,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1975831749}
   hudUI: {fileID: 664285993}
-  hurtSFX: {fileID: 1765306316}
+  duckSFX: {fileID: 1765306316}
   duckStep: {fileID: 1765306316}
   oof: {fileID: 8300000, guid: 6a98aa8e56118214b8d4e3e28780b82e, type: 3}
   dieNoise: {fileID: 8300000, guid: 923f49bdf69a18c4ca8ba701bf4801db, type: 3}
   steps: {fileID: 8300000, guid: f46ad946fbed17941aae43a6bd6055e2, type: 3}
+  quack: {fileID: 8300000, guid: b2eb0d024b34aa7448a8d4ab10035fde, type: 3}
   speed: 3
   motion: {x: 0, y: 0}
   mouseInput: {x: 0, y: 0}

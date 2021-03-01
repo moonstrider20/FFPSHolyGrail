@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/PlayerControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/PlayerControls.inputactions'
 
 using System;
 using System.Collections;
@@ -46,6 +46,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""8a7aa022-141d-4f0b-a41b-21a3f377bd34"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Quack"",
+                    ""type"": ""Button"",
+                    ""id"": ""47750402-aafe-41bc-950d-523eed458f15"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -381,6 +389,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""465c4e10-f4c4-44eb-93a9-016c8c7e68b3"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Quack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d52d0abf-28ba-429a-a490-c76c2532d28a"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Quack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -421,6 +451,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Gun = m_Player.FindAction("Gun", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_Quack = m_Player.FindAction("Quack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -474,6 +505,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Gun;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_Quack;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -482,6 +514,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Gun => m_Wrapper.m_Player_Gun;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @Quack => m_Wrapper.m_Player_Quack;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -503,6 +536,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Quack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuack;
+                @Quack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuack;
+                @Quack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuack;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -519,6 +555,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Quack.started += instance.OnQuack;
+                @Quack.performed += instance.OnQuack;
+                @Quack.canceled += instance.OnQuack;
             }
         }
     }
@@ -547,5 +586,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnGun(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnQuack(InputAction.CallbackContext context);
     }
 }

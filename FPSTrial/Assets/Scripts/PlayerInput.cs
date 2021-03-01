@@ -15,11 +15,13 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     public GameObject pauseMenuUI;
     public GameObject hudUI;
 
-    public AudioSource hurtSFX;
+    public AudioSource duckSFX; //was hurtSFX
     public AudioSource duckStep;
+
     public AudioClip oof;
     public AudioClip dieNoise;
     public AudioClip steps;
+    public AudioClip quack;
     //*********************************************************************************************************************************************************
     
     public float speed;                     //Speed of Player
@@ -62,10 +64,9 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
         Cursor.lockState = CursorLockMode.Locked;           //Keep cursor in the center, not wandering
         Cursor.visible = false;                             //Make cursor invisible 
         maxHealth = health;                                 //Set max health to health
-        hurtSFX = gameObject.AddComponent<AudioSource>();
+        duckSFX = gameObject.AddComponent<AudioSource>();
         duckStep = gameObject.AddComponent<AudioSource>();
-        hurtSFX.clip = oof;
-        duckStep.clip = steps;
+        duckSFX.clip = oof;
 
         
     
@@ -121,6 +122,12 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
         //***************************************************************************************************************************************************************************
     }
 
+    public void OnQuack(InputAction.CallbackContext context)
+    {
+        duckSFX.clip = quack;
+        duckSFX.Play();
+    }
+
     void Update()
     {
         Move();         //Calls method Move()
@@ -157,10 +164,12 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     public void TakeDamage(int damage)
     {
         health -= damage;                   //decrement health according to damage taken
-        hurtSFX.Play();
+        duckSFX.clip = oof;
+        duckSFX.Play();
         if (health <= 0)                    //If player dies
         {
-            hurtSFX.clip = dieNoise;                
+            duckSFX.clip = dieNoise;
+            duckSFX.Play();
             Debug.Log("YOU DIED!");         //Put actual death here
             loseScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.None;           //Unlock cursor
